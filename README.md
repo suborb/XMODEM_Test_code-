@@ -1,8 +1,8 @@
 # XMODEM_Test_code
 
-#### XMODEM code for CP/M on the Z180. This code is work in prgress and has bugs. 
+### XMODEM code for CP/M on the Z180. This code is work in prgress and has bugs. 
 
-#### Only looking at the 
+### Only looking at the code starting at line 325 where XMODEM reception starts...
 
 #### Using "terminal 1" for main communication with "UART0" to issue CP/M commands and do XMODEM data transfer, and "terminal 2" to only receive debug data from "UART1" sent by instructions placed in the code to observe various parameters.
 
