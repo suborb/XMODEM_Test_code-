@@ -327,9 +327,9 @@ int xmodemReceive(void)                             // Main function for XMODEM 
     int bufferSize = 128, i = 0, crc = 0, retrans = MAXRETRANS, retry;
     unsigned char rxbuff[134], c, packetNumber = 1, trychar = 'C';
 	counter = 0;
-	while((BUTTON & 0x40) == 0x40) 
-	{
-		// Wait for button press.
+	while((BUTTON & 0x40) == 0x40)   // This prevents the terminal from timing out while looking for the file you wish to send.
+	{				 // Press the button after loading the file to send a 'C' character to the terminal and wait for 'SOH' in responce.
+	// Wait for button press.
 	}
     while(1) 
     {
@@ -420,8 +420,12 @@ start_reception:
 //     	for(i = 0;  i < (bufferSize + (crc ? 1 : 0) + 3); ++i) 
 //     	{	
 //		}
-					
+						// Receive a whole packet first and then send the whole packet to UART1 to display on terminal2 for debug.				
 __asm
+		in0		a,(0xC0)
+		res 		3,a
+		out0 		(0xC0),a
+	
 		ld		hl,0x9001
 		ld		b,0x86
 RXbuffEmpty:
@@ -437,7 +441,7 @@ RXbuffEmpty:
 		jr		nz,RXbuffEmpty
 		ld		hl,9001
 		ld		b,0x86
-nnnn:
+next:
 		in0		a,(0xC5)
 		bit		1,a
 		jr		z,nnnn
@@ -445,7 +449,7 @@ nnnn:
 		out0	(0xC7),a
 		inc		hl
 		dec		b
-		jr		nz,nnnn
+		jr		nz,next
 		jr		good
 error:
 		halt
