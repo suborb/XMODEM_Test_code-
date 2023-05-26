@@ -1,5 +1,3 @@
-# XMODEM_Test_code-
-Just testing XMODEM code for CP/M on the Z180
+# XMODEM_Test_code
 
-
-#### XMODEM code for CP/M. This code is work in prgress. 
+#### XMODEM code for CP/M on the Z180. This code is work in prgress. 
