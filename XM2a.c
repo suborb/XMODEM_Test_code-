@@ -422,38 +422,41 @@ start_reception:
 //		}
 						// Receive a whole packet first and then send the whole packet to UART1 to display on terminal2 for debug.				
 __asm
-		in0		a,(0xC0)
-		res 		3,a
-		out0 		(0xC0),a
-	
 		ld		hl,0x9001
 		ld		b,0x86
+
+		; Busy loop whilst we wait for an available character
 RXbuffEmpty:
-		in0		a,(0xC4)
-		bit		6,a
-		jr		nz,error
-		bit		7,a
-		jr		z,RXbuffEmpty
+		in0		a,(0xC4)	;read status register
+		push		af
+		and		$70		;Any error set?
+		jr		z,no_error
+		in0		a,(0xc0)	;Reset EFR or we can not read anything else
+		res		3,a
+		out		(0xc0),a
+no_error:
+		pop		af
+		rlca
+		jr		nc,RXbuffEmpty
+		; Character pending, read it and store in buffer
 		in0		a,(0xC8)
 		ld		(hl),a
 		inc 	hl
 		dec		b
 		jr		nz,RXbuffEmpty
+
+
 		ld		hl,9001
 		ld		b,0x86
 next:
 		in0		a,(0xC5)
 		bit		1,a
-		jr		z,nnnn
+		jr		z,next
 		ld		a,(hl)
 		out0	(0xC7),a
 		inc		hl
 		dec		b
 		jr		nz,next
-		jr		good
-error:
-		halt
-good:
 
 __endasm;
 
