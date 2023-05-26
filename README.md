@@ -6,7 +6,7 @@
 
 #### Using "terminal 1" for main communication with "UART0" to issue CP/M commands and do XMODEM data transfer, and "terminal 2" to only receive debug data from "UART1" sent by instructions placed in the code to observe various parameters.
 
-#### After setting the code to recive XMODEM data and "terminal 1 to send a text file using XMODEM the SC126 sends the 'C' character and "terminal 1" sends the SOH. 
+#### After setting the code to receive XMODEM data and "terminal 1 to send a text file using XMODEM the SC126 sends the 'C' character and "terminal 1" sends the SOH. 
 #### This is confirmed by debug code sending the received "SOH" byte to "terminal 2"
 
 #### The code up until line 424 works correctly
