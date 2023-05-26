@@ -1,6 +1,6 @@
 # XMODEM_Test_code
 
-### XMODEM code for CP/M on the Z180. This code is work in prgress and has bugs. 
+### XMODEM code for CP/M on the Z180. This code is work in progress and has bugs. 
 
 ### Only looking at the code starting at line 325 where XMODEM reception starts...
 
