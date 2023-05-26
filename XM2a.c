@@ -1,5 +1,5 @@
 /* XMODEM for Z180 CPM2.2 */
-/* zcc +cpm -mz180 xm2.c -o xm2.com */
+/* zcc +cpm -mz180 xm2a.c -o xm2a.com */
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
