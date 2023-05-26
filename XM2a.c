@@ -413,7 +413,7 @@ start_reception:
 //		if(crc == 0)
 //			serialTXB('0');			// Indicate 8 bit checksum mode.
 //		serialTXB('\n');
-//        bpoke(0x9000, 'W');			// save SOH.
+//        bpoke(0x9000, c);			// save SOH.
 //		serialTXB(bpeek(0x9000));		// Confirm SOH is saved.
 //		serialTXB('\n');
 		
